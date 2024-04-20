@@ -1,0 +1,230 @@
+\documentclass{article}
+\usepackage{geometry}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{parskip}
+\newgeometry{vmargin={15mm}, hmargin={24mm,34mm}}
+\theoremstyle{definition} 
+\newtheorem{definition}{Definition}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}{Corollary}[theorem]
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\fdiff}{f^{\prime}}
+\newcommand{\interior}{\text{int}}
+\newcommand{\dom}{\text{Dom}}
+\newcommand{\ran}{\text{Ran}}
+
+\title{Analysis Notes}
+\date{March 2024}
+
+\begin{document}
+
+\maketitle
+
+Can you have 3 disjoint dense sets in a set?
+
+\section{Metric Spaces}
+
+\begin{lemma}
+    Let $(X,\rho)$ be a metric space and $A \subseteq X$. $g: X \xrightarrow{} \R$ defined by
+    
+    \[ g(x) = \rho(x,A)\]
+
+    is a continuous function.
+\end{lemma}
+\begin{proof}
+    We'll prove a stronger condition, namely, we'll prove that $\forall x,y \in X: \lvert g(x) - g(y) \rvert \leq \rho(x,y)$.
+
+    Let $x,y \in X$. Observe that for any $p \in A$,
+    
+    \[g(x) = \inf_{a \in A} \rho(x,a) \leq \rho(x,y) + \rho(y,p) \]
+
+    Then, $g(x) - \rho(x,y)$ is a lower bound on $A = \{\rho(y,a): a \in A\}$ and thus
+    $g(x) - \rho(x,y) \leq g(y)$ by the \textit{greatest} lower bound property of the
+    infimum. Rearranging produces the desired inequality.
+\end{proof}
+
+In fact, notice that it is uniformly continuous.
+
+\begin{lemma}
+    Let $(X,\rho)$ be a metric space and $A \subseteq B \subseteq X$.
+    Then, $diamA \leq diamB$.
+\end{lemma}
+
+\newpage
+
+\section{Metric Space Compactness}
+
+\begin{lemma}
+    Let $(X,\rho)$ be a complete metric space. Let $E_{n}$ be a sequence of non-empty,
+    closed and bounded subsets such that $\forall n \in \N: E_{n+1} \subseteq E_{n}$.
+    If $\lim_{n \to \infty} diam(E_{n}) = 0$, $\bigcap_{i = 1}^{\infty} E_{n}$
+    has exactly one point.
+
+    In other words, each nested sequence of shrinking closed
+    sets in a complete space has exactly one point in common.
+\end{lemma}
+\begin{proof}
+    Before we prove the (harder) existence, let's first prove uniqueness.
+    Assume by contradiction that $E$ contains two distinct points $p$
+    and $q$. Let $d := \frac{1}{2} \rho(p,q)$. Then, $diam(E) > d$.
+    However, $p$ and $q$ are also in every $E_{n}$ so we also just
+    got a lower bound for $diam(E_{n})$ for all $n \in \N$, which contradicts
+    the fact that the diameters are going to 0.
+
+    Let's now prove that the intersection is not empty. Since $E$
+    is an intersection of closed sets, $E$ is closed. Thus, it suffices
+    to find a limit point of $E$.
+
+    By invoking the Axiom of Choice, pick some $x_{n} \in E_{n}$ for all
+    $n \in \N$. We'll prove that this sequence is Cauchy. 
+    
+    Let $\epsilon > 0$.
+    Since $\lim_{n \to \infty} diam(E_{n}) = 0$, there's some $N \in \N: \forall n \geq N:
+    diam(E_{n}) < \epsilon$. Then, by using the fact that the sequences are nested, we immediately
+    get that $x_{n}$ is 
+\end{proof}
+
+\newpage
+
+\section{Infinite Series}
+
+\subsection{Cauchy Condensation Test}
+
+\begin{theorem}
+    Let $a_{n}$ be a non-negative and decreasing sequence. Then,
+
+    \[ \sum_{n=1}^{\infty} a_{n}\leq 2^{n} \sum_{n = 1}^{\infty} a_{2^{n}}\leq 2 \sum_{n=1}^{\infty} a_{n} \]
+\end{theorem}
+
+
+\subsection{Rearrangement Theorems}
+
+\begin{theorem}
+    Any rearrangement of an absolutely convergent series converges to the same sum.
+\end{theorem}
+
+The idea behind the proof is to use the Cauchy Criterion and cancel out the
+first $N$ terms by taking $m$ to be large enough. The rest of the proof is just
+fun and games with the triangle inequality.
+
+\subsection{Dirichlet and Abel Summation Tests}
+
+\section{Continuity}
+
+\begin{lemma}
+    The inverse of a monotonic function is monotonic in the same way.
+\end{lemma}
+\begin{proof}
+    Without loss of generality, assume $f$ is monotonically increasing.
+    Then, $x < y \implies f(x) < f(y)$ so $f^{-1}(x) < f^{-1}(y) \implies x < y$.
+    Considering the contrapositive gives the required result.
+\end{proof}
+
+\newpage
+
+\section{Intermediate Value Theorem}
+
+\begin{theorem}[Intermediate Value Theorem]
+    
+\end{theorem}
+
+\begin{corollary}
+    Every odd-degree polynomial has a root in $\R$.
+\end{corollary}
+
+\begin{corollary}\label{fixed_point_ivt}
+    Let $I \subseteq \R$ be a compact interval and $f:I \xrightarrow{} I$ be a continuous function 
+    with $\dom(f) = I$. Then, $\exists x \in I: f(x) = x$.
+\end{corollary}
+\begin{proof}
+    
+\end{proof}
+
+
+\section{Differentiation}
+
+\subsubsection{Inverse Function Rule}
+
+The following lemma is from Exercise 5.2 in Rudin:
+
+\begin{lemma}
+    Let $f: [a,b] \xrightarrow{} \R$ and assume
+    $\fdiff(x) > 0$ on $(a,b)$. Let $g$ be the inverse of $f$.
+    Then, $g$ is differentiable and
+    
+    \[ g^{\prime}(f(x)) = \frac{1}{\fdiff(x)} \]
+\end{lemma}
+\begin{proof}
+
+\end{proof}
+
+Here's a homework exercise from MATH131BH.
+Notice that we need $f$ to be injective for the
+inverse to be defined. Also notice that no regularity
+assumptions are made about $f$ apart from the
+behavior at $x$. In particular, $f$ might be discontinuous
+and monotone on $(x - \delta, x + \delta)$ for any $\delta > 0$.
+
+\begin{lemma}
+    Let $f: \R \xrightarrow{} \R$ be an injective function on $\dom(f)$. Let $x \in \interior(\dom(f))$
+    such that $f(x) \in \interior(\ran(f))$. Assume that 
+    the inverse function is continuous at $f(x)$.
+    If $\fdiff(x) \neq 0$, $f^{-1}$ is differentiable at $f(x)$
+    with
+
+    \[ (f^{-1})^{\prime}(x) = \frac{1}{\fdiff(x)} \]
+\end{lemma}
+\begin{proof}
+    
+\end{proof}
+
+The requirement that $f^{-1}$ is continous can be replaced
+by different assumptions. For example, $f$ can be continously differentiable.
+
+Ross has another version of this lemma.
+
+\newpage
+
+\section{Applications of Uniform Convergence: }
+
+\newpage
+
+\section{Fixed Point Theorems}
+
+A good resource is Raymond Chu's notes for MATH204 at UCLA.
+
+The first of the fixed point theorems was a corollary to IVT: see Corollary \ref{fixed_point_ivt}.
+
+\begin{theorem}[Banach Contraction Mapping Theorem]
+    Let $(X,d)$ be a non-empty complete metric space. Let $f: X \xrightarrow{} X$
+    be $c$-Lipschitz for some $c \in (0,1)$. Then, $f$ has a unique fixed point.
+\end{theorem}
+\begin{proof}
+    The uniqueness is immediate by the Lipschitz condition.
+
+    We'll consider the sequence given by continuously applying $f$. Since $X$ is complete,
+    it suffices to show that this sequence is Cauchy.
+\end{proof}
+
+We can't take $c = 1$ since for example $f(x) = x + 1$ satisfies it but has no fixed points.
+
+\newpage
+
+\section{Banach Spaces}
+
+\begin{definition}
+    Let $X$ be an $F$ vector space and $d$ be a metric induced by a norm on $X$. Assume 
+    $(X,d)$ is a complete metric space. This is called a \textbf{Banach space}.
+\end{definition}
+
+
+
+
+\end{document}

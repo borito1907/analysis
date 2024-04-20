@@ -1,0 +1,85 @@
+\documentclass{article}
+\usepackage{geometry}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{parskip}
+\newgeometry{vmargin={15mm}, hmargin={24mm,34mm}}
+\theoremstyle{definition} 
+\newtheorem{definition}{Definition}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{example}{Example}[theorem]
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\fdiff}{f^{\prime}}
+\newcommand{\interior}{\text{int}}
+\newcommand{\dom}{\text{Dom}}
+\newcommand{\ran}{\text{Ran}}
+
+\title{Complex Analysis}
+\date{March 2024}
+
+\begin{document}
+
+\maketitle
+
+\section{Resources}
+
+\begin{itemize}
+    \item Stein and Shakarchi
+    \item Serge Lang (I didn't like how he didn't introduce topology. It's lame.)
+    \item BrightSide of Math Youtube Series
+\end{itemize}
+
+\section{Introduction to Complex Numbers}
+
+\begin{example}
+    Consider $f: \C \xrightarrow{} \C$ defined by $f(z) = \frac{1}{z}$. This function maps the unit circle outside of the unit circle
+    and maps the outside of the unit circle to the unit circle. It's a bijection. It's called an \textbf{inversion} through the unit circle. 
+\end{example}
+
+\begin{example}
+    Consider $f: \C \xrightarrow{} \C$ defined by $f(z) = \frac{1}{\bar{z}}$. This function maps the unit circle outside of the unit circle
+    and maps the outside of the unit circle to the unit circle. It's a bijection. It's called an \textbf{reflection} through the unit circle. 
+\end{example}
+
+\begin{lemma}
+    Let $z_{n}$ be a sequence of complex numbers with $z_{n} = x_{n} + i y_{n}$. $z_{n}$ is Cauchy if and only if
+    $x_{n}$ and $y_{n}$ are Cauchy. 
+\end{lemma}
+\begin{proof}
+    The forward direction is immediate since $\lvert x_{n} - x_{m} \rvert \leq \lvert z_{n} - z_{m} \rvert$ and similarly
+    for $y_{n}$.
+
+    Notice that $\lvert z_{n} - z_{m} \rvert = \sqrt{(x_{n} - x_{m})^{2} + (y_{n} - y_{m})^{2}}$, which proves the converse.
+\end{proof}
+
+\begin{definition}
+    Let $f: U \xrightarrow{} \C$. $f$ is \textbf{(complex) differentiable} at $z_{0} \in U$ there's $f^{\prime}(z_{0}) \in \C$
+    and $\phi: \C xrightarrow{} \C$ with
+
+    \[ f(z) = f(z_{0}) + f^{\prime}(z_{0})(z - z_{0})  + \phi(z)\]
+
+    where $\lim_{z \to z_{0}} \frac{\phi(z)}{z - z_{0}} = 0$.
+\end{definition}
+
+How do we prove the uniqueness of the derivative?
+
+\begin{definition}
+    Let $f: U \xrightarrow{} \C$. $f$ is \textbf{holomorphic} if $f$ is complex differentiable on $U$.
+\end{definition}
+
+\begin{definition}
+    Let $f_{R}: \R^{2} \xrightarrow{} \R^{2}$. $f$ is \textbf{totally differentiable}
+
+\end{definition}
+
+
+
+\end{document}
